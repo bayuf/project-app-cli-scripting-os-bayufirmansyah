@@ -24,6 +24,9 @@ ShowTheWinner() {
     fi
     echo ""
     echo "====================================================================="
+    echo ""
+    read -p "Tekan Enter untuk kembali ke Main Menu..."
+
 }
 
 # Mendapatkan hasil pertarungan
@@ -58,7 +61,7 @@ MulaiGame() {
         read -p "Silahkan Masukkan Jumlah Ronde : " maxRounds
 
         # Validasi input jika bukan angka
-        if ! [[ "$pilihMenu" =~ ^[0-9]+$ ]]; then
+        if ! [[ "$maxRounds" =~ ^[0-9]+$ ]]; then
             clear
             echo -e "${RED}Invalid Input: Masukkan satu Angka dari 1 sampai 10${NC}"
             continue
@@ -79,6 +82,7 @@ MulaiGame() {
     while [ $round -le $maxRounds ]; do
 
         while [ true ]; do
+            echo "=====             ROUND $round             ====="
             echo " _________________________________________"
             echo "|== Musuhmu sudah menentukan pilihannya ==|"
             echo "|==           Ini Giliranmu..!!!        ==|"
@@ -98,7 +102,7 @@ MulaiGame() {
             read -p "Tentukan pihanmu sekarang : " playerPil
 
             # Validasi Input jika bukan angka
-            if ! [[ "$pilihMenu" =~ ^[0-9]+$ ]]; then
+            if ! [[ "$playerPil" =~ ^[0-9]+$ ]]; then
                 clear
                 echo -e "${RED}Invalid Input: Pilih angka 1 sampai 3 ${NC}"
                 continue
@@ -166,6 +170,7 @@ GetComChoice() {
 
 # Menu Game
 MainMenu() {
+    clear
     while ( true ); do
 
         # Menampilkan In-Game
