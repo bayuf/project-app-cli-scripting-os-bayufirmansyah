@@ -170,8 +170,8 @@ GetComChoice() {
 
 # Menu Game
 MainMenu() {
-    clear
     while ( true ); do
+    clear
 
         # Menampilkan In-Game
         echo " _________________________________"
