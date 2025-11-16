@@ -64,12 +64,10 @@ MulaiGame() {
         fi
         break
     done
-
     clear
 
-    round=1
-
     # Ulangi Pertandingan sampai ronde habis
+    round=1
     while [ $round -le $maxRounds ]; do
 
         while [ true ]; do
@@ -115,8 +113,6 @@ MulaiGame() {
         echo -e "${RED}Computer Memilih : $comChoice${NC}"
         echo ""
         GetResult "$playerChoice" "$comChoice"
-
-
 
         round=$((round + 1))
         if [[ "$round" -le "$maxRounds" ]]; then
