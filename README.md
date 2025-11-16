@@ -1,2 +1,2 @@
-# project-app-cli-scripting-os-bayufirmansyah
+# Tentang Projek
 Mini Projek
