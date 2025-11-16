@@ -119,7 +119,7 @@ MulaiGame() {
 
 
         round=$((round + 1))
-        if [[ "$round" -lt "$((maxRounds+1))" ]]; then
+        if [[ "$round" -le "$maxRounds" ]]; then
             read -p "tekan enter untuk lanjut ronde berikutnya ...."
         else
             read -p "tekan enter untuk melihat Siapa Sang Juara ...."
