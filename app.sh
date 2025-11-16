@@ -57,6 +57,14 @@ MulaiGame() {
         maxRounds=0
         read -p "Silahkan Masukkan Jumlah Ronde : " maxRounds
 
+        # Validasi input jika bukan angka
+        if ! [[ "$pilihMenu" =~ ^[0-9]+$ ]]; then
+            clear
+            echo -e "${RED}Invalid Input: Masukkan satu Angka dari 1 sampai 10${NC}"
+            continue
+        fi
+
+        # Validasi input jika input tidak sesuai ketentuan max:10 min:1
         if [[ "$maxRounds" -gt 10 || "$maxRounds" -lt 1 ]]; then
             clear
             echo -e "${RED}Invalid Input: Masukkan satu Angka dari 1 sampai 10${NC}"
@@ -89,6 +97,14 @@ MulaiGame() {
             playerPil=0
             read -p "Tentukan pihanmu sekarang : " playerPil
 
+            # Validasi Input jika bukan angka
+            if ! [[ "$pilihMenu" =~ ^[0-9]+$ ]]; then
+                clear
+                echo -e "${RED}Invalid Input: Pilih angka 1 sampai 3 ${NC}"
+                continue
+            fi
+
+            # validasi input harus angka 1 sampai 3
             if [[ "$playerPil" -lt 1 || "$playerPil" -gt 3 ]]; then
                 clear
                 echo -e "${RED}Invalid Input: Pilih angka 1 sampai 3 ${NC}"
@@ -100,6 +116,8 @@ MulaiGame() {
         done
 
         playerChoice=""
+
+        # Mendapatkan Pilihan dari komputer
         comChoice=$(GetComChoice)
 
         case $playerPil in
@@ -108,12 +126,16 @@ MulaiGame() {
             3) playerChoice="Kertas";;
         esac
 
+        # Menampilkan Pilihan dari player dan Computer
         echo "Hasilnya adalah"
         echo -e "${GREEN}Kamu Memilih     : $playerChoice"
         echo -e "${RED}Computer Memilih : $comChoice${NC}"
         echo ""
+        
+        # Menampilkan Hasil pertandingan dan hitung score
         GetResult "$playerChoice" "$comChoice"
 
+        # melakukan pengecekan apakah ronde sudah mencapai maxRounds
         round=$((round + 1))
         if [[ "$round" -le "$maxRounds" ]]; then
             read -p "tekan enter untuk lanjut ronde berikutnya ...."
@@ -129,8 +151,11 @@ MulaiGame() {
 
 # Function untuk mendapat pilihan dari komputer
 GetComChoice() {
+    # computer memilih satu angka dari 1-3 secara acak
     local com=$(shuf -i 1-3 -n 1)
     local comChoice=""
+
+    # dari ketiga angka acak di convert menjadi gunting/batu/kertas 
     case $com in
         1) comChoice="Gunting";;
         2) comChoice="Batu";;
@@ -143,6 +168,7 @@ GetComChoice() {
 MainMenu() {
     while ( true ); do
 
+        # Menampilkan In-Game
         echo " _________________________________"
         echo "|==  Selamat Datang di GO-Suit  ==|"
         echo "|                                 |"
@@ -156,7 +182,14 @@ MainMenu() {
         echo ""
         read -p "Pilih : " pilihMenu
 
-        # Validasi Input Pilihan Menu
+        # Validasi Input jika bukan angka
+        if ! [[ "$pilihMenu" =~ ^[0-9]+$ ]]; then
+            clear
+            echo -e "${RED}Invalid Input: Silahkan pilih antara angka 1 atau 2${NC} "
+            echo ""
+            continue
+        fi
+        # Validasi Input angka tidak sesuai
         if [[ "$pilihMenu" -lt 1 || "$pilihMenu" -gt 2 ]]; then
             clear
             echo -e "${RED}Invalid Input: Silahkan pilih antara angka 1 atau 2${NC} "
